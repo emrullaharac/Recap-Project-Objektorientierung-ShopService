@@ -28,6 +28,6 @@ public class Main {
         shopService.addOrder(ids2);
         shopService.addOrder(ids3);
 
-        shopService.getOrdersByStatus(OrderStatus.PROCESSING).forEach(System.out::println);
+        shopService.getAllOrders().forEach(System.out::println);
     }
 }
