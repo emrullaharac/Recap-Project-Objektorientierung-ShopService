@@ -1,3 +1,6 @@
+import model.Product;
+import repo.ProductRepo;
+
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
