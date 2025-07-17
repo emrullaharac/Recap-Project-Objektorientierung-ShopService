@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class OrderListRepo implements OrderRepo{
-    private List<Order> orders = new ArrayList<>();
+    private final List<Order> orders = new ArrayList<>();
 
     public List<Order> getOrders() {
         return orders;
