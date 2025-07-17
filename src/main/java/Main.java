@@ -4,8 +4,9 @@ public class Main {
     public static void main(String[] args) {
         ProductRepo productRepo = new ProductRepo();
         OrderRepo orderRepo = new OrderMapRepo();
+        IdService idService = new UuidService();
 
-        ShopService shopService = new ShopService(productRepo, orderRepo);
+        ShopService shopService = new ShopService(productRepo, orderRepo, idService);
 
         productRepo.addProduct(new Product("1", "Apfel"));
         productRepo.addProduct(new Product("2", "Banane"));

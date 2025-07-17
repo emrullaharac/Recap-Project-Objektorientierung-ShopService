@@ -13,7 +13,9 @@ class ShopServiceTest {
         ProductRepo productRepo = new ProductRepo();
         productRepo.addProduct(new Product("1", "Apfel"));
         OrderRepo orderRepo = new OrderMapRepo();
-        ShopService shopService = new ShopService(productRepo, orderRepo);
+        IdService idService = new UuidService();
+
+        ShopService shopService = new ShopService(productRepo, orderRepo, idService);
         List<String> productsIds = List.of("1");
 
         //WHEN
@@ -32,7 +34,9 @@ class ShopServiceTest {
         ProductRepo productRepo = new ProductRepo();
         productRepo.addProduct(new Product("1", "Apfel"));
         OrderRepo orderRepo = new OrderMapRepo();
-        ShopService shopService = new ShopService(productRepo, orderRepo);
+        IdService idService = new UuidService();
+
+        ShopService shopService = new ShopService(productRepo, orderRepo, idService);
         List<String> productsIds = List.of("1", "2");
 
         //WHEN & THEN
@@ -46,7 +50,9 @@ class ShopServiceTest {
         ProductRepo productRepo = new ProductRepo();
         productRepo.addProduct(new Product("1", "Apfel"));
         OrderRepo orderRepo = new OrderMapRepo();
-        ShopService shopService = new ShopService(productRepo, orderRepo);
+        IdService idService = new UuidService();
+
+        ShopService shopService = new ShopService(productRepo, orderRepo, idService);
 
         // WHEN & THEN
         assertThrows(OrderNotFoundException.class, () -> shopService.updateOrder("X", OrderStatus.COMPLETED));
