@@ -1,6 +1,10 @@
+package repo;
+
+import model.Order;
+
 import java.util.*;
 
-public class OrderMapRepo implements OrderRepo{
+public class OrderMapRepo implements OrderRepo {
     private final Map<String, Order> orders = new HashMap<>();
 
     @Override
