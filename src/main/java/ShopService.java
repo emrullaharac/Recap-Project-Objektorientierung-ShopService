@@ -1,10 +1,8 @@
 import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 public class ShopService {
@@ -40,5 +38,18 @@ public class ShopService {
         return orderRepo.getOrders().stream()
                 .filter(o -> o.status().equals(orderStatus))
                 .toList();
+    }
+
+    public Map<OrderStatus, Order> getOldestOrderPerStatus() {
+        return orderRepo.getOrders().stream()
+                .collect(Collectors.groupingBy(
+                        Order::status,
+                        Collectors.minBy(Comparator.comparing(Order::orderDate))
+                )).entrySet().stream()
+                .filter(e -> e.getValue().isPresent())
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        e -> e.getValue().get()
+                ));
     }
 }
