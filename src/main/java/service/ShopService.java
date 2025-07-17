@@ -43,6 +43,10 @@ public class ShopService {
         return Optional.of(updatedOrder);
     }
 
+    public List<Order> getAllOrders() {
+        return orderRepo.getOrders();
+    }
+
     public List<Order> getOrdersByStatus(OrderStatus orderStatus) {
         return orderRepo.getOrders().stream()
                 .filter(o -> o.status().equals(orderStatus))
