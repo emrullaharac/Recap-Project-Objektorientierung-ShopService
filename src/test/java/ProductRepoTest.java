@@ -8,6 +8,7 @@ class ProductRepoTest {
     void getProducts() {
         //GIVEN
         ProductRepo repo = new ProductRepo();
+        repo.addProduct(new Product("1", "Apfel"));
 
         //WHEN
         List<Product> actual = repo.getProducts();
@@ -22,6 +23,7 @@ class ProductRepoTest {
     void getProductById() {
         //GIVEN
         ProductRepo repo = new ProductRepo();
+        repo.addProduct(new Product("1", "Apfel"));
 
         //WHEN
         Optional<Product> actual = repo.getProductById("1");

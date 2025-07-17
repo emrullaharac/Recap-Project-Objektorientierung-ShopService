@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class OrderMapRepo implements OrderRepo{
-    private Map<String, Order> orders = new HashMap<>();
+    private final Map<String, Order> orders = new HashMap<>();
 
     @Override
     public List<Order> getOrders() {

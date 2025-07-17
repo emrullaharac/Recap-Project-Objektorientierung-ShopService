@@ -10,7 +10,10 @@ class ShopServiceTest {
     @Test
     void addOrderTest() {
         //GIVEN
-        ShopService shopService = new ShopService();
+        ProductRepo productRepo = new ProductRepo();
+        productRepo.addProduct(new Product("1", "Apfel"));
+        OrderRepo orderRepo = new OrderMapRepo();
+        ShopService shopService = new ShopService(productRepo, orderRepo);
         List<String> productsIds = List.of("1");
 
         //WHEN
@@ -26,10 +29,26 @@ class ShopServiceTest {
     @Test
     void addOrderTest_whenInvalidProductId_expectNull() {
         //GIVEN
-        ShopService shopService = new ShopService();
+        ProductRepo productRepo = new ProductRepo();
+        productRepo.addProduct(new Product("1", "Apfel"));
+        OrderRepo orderRepo = new OrderMapRepo();
+        ShopService shopService = new ShopService(productRepo, orderRepo);
         List<String> productsIds = List.of("1", "2");
 
         //WHEN & THEN
         assertThrows(ProductNotFoundException.class, () -> shopService.addOrder(productsIds));
+    }
+
+
+    @Test
+    void updateOrder_shouldThrowException_ifOrderNotFound() {
+        // GIVEN
+        ProductRepo productRepo = new ProductRepo();
+        productRepo.addProduct(new Product("1", "Apfel"));
+        OrderRepo orderRepo = new OrderMapRepo();
+        ShopService shopService = new ShopService(productRepo, orderRepo);
+
+        // WHEN & THEN
+        assertThrows(OrderNotFoundException.class, () -> shopService.updateOrder("X", OrderStatus.COMPLETED));
     }
 }
